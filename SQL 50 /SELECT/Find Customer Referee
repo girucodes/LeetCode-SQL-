@@ -64,3 +64,11 @@ We have to filter rows based on either or condition .
 SELECT name 
 FROM Customer 
 WHERE referee_id != 2 OR referee_id IS NULL ; 
+
+# using COALESCE() => returns first non null values from a list 
+# In this function we can pass more than 2 values just like this we have isnull() but in that we can pass only 2 values. 
+SELECT name
+FROM Customer
+WHERE COALESCE(referee_id,0) <> 2 ; # What are we doing here ?
+# With help of COALESCE() we will get to know about referee_id =2 and we will put zero there. 
+
