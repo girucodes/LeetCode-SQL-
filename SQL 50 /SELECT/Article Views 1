@@ -1,0 +1,77 @@
+# SQL (Basic)
+# SELECT 
+# Difficulty : Easy
+
+# 1148. Article Views 1
+
+'''
+Table: Views
+
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| article_id    | int     |
+| author_id     | int     |
+| viewer_id     | int     |
+| view_date     | date    |
++---------------+---------+
+There is no primary key (column with unique values) for this table, the table may have duplicate rows.
+Each row of this table indicates that some viewer viewed an article (written by some author) on some date. 
+Note that equal author_id and viewer_id indicate the same person.
+ 
+
+Write a solution to find all the authors that viewed at least one of their own articles.
+
+Return the result table sorted by id in ascending order.
+
+The result format is in the following example.
+'''
+ 
+'''
+Example 1:
+
+Input: 
+Views table:
++------------+-----------+-----------+------------+
+| article_id | author_id | viewer_id | view_date  |
++------------+-----------+-----------+------------+
+| 1          | 3         | 5         | 2019-08-01 |
+| 1          | 3         | 6         | 2019-08-02 |
+| 2          | 7         | 7         | 2019-08-01 |
+| 2          | 7         | 6         | 2019-08-02 |
+| 4          | 7         | 1         | 2019-07-22 |
+| 3          | 4         | 4         | 2019-07-21 |
+| 3          | 4         | 4         | 2019-07-21 |
++------------+-----------+-----------+------------+
+Output: 
++------+
+| id   |
++------+
+| 4    |
+| 7    |
++------+
+'''
+
+'''
+  pseudocode 
+Now We want to find those Authors' that viewed their article at least once that means DISTINCTLY i.e. ek baar toh dekha hi hoga!
+Here we will use => DISTINCT(), WHERE clause and ORDER BY clause as we have to sort the filtered row based on column author_id in Ascending order for that ASC 
+[but in ORDER BY clause no need to write ASC as it is defaultly sorted in ascending order] 
+& alias AS . 
+'''
+
+# SOLUTION 
+SELECT DISTINCT(author_id) AS ID 
+FROM Views 
+WHERE author_id = viewer_id
+ORDER BY ID ; 
+
+OR 
+We can sort according to column number also but that is not recommended 
+refer to this article to understand WHY? 
+https://blog.sqlauthority.com/2010/12/27/sql-server-order-by-columnname-vs-order-by-columnnumber/
+
+SELECT DISTINCT(author_id) AS ID 
+FROM Views 
+WHERE author_id = viewer_id
+ORDER BY 1 ;  <= not recommended 
